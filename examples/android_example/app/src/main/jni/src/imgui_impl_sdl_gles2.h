@@ -21,4 +21,6 @@ IMGUI_API bool        ImGui_ImplSdlGLES2_ProcessEvent(SDL_Event* event);
 IMGUI_API void        ImGui_ImplSdlGLES2_InvalidateDeviceObjects();
 IMGUI_API bool        ImGui_ImplSdlGLES2_CreateDeviceObjects();
 
+int32_t Get_Density();
+
 #endif // IMGUI_IMPL_SDL_GL2

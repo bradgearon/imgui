@@ -7,7 +7,7 @@ LOCAL_MODULE := main
 SDL_PATH := ../SDL2
 
 IMGUI_PATH := ../../../../../../../
-
+LOCAL_CPPFLAGS := -Wno-error=format-security
 LOCAL_C_INCLUDES := $(LOCAL_PATH)/$(SDL_PATH)/include \
 	$(IMGUI_PATH)/imgui.h \
 	$(IMGUI_PATH)/imgui_internal.h \
@@ -25,6 +25,6 @@ LOCAL_SRC_FILES := $(SDL_PATH)/src/main/android/SDL_android_main.c \
 
 LOCAL_SHARED_LIBRARIES := SDL2
 
-LOCAL_LDLIBS := -lGLESv2 -llog
+LOCAL_LDLIBS := -lGLESv2 -llog -landroid
 
 include $(BUILD_SHARED_LIBRARY)

@@ -14,10 +14,10 @@
 #include "imgui_impl_sdl_gles2.h"
 
 /* Must use exact parameters here or else there will be an undefined reference to SDL_main */
-int main(int argc, char** argv)
+int main(int argc, char **argv)
 {
     /* Initialize SDL library */
-    SDL_Window* sdlWindow = 0;
+    SDL_Window *sdlWindow = 0;
     SDL_GLContext sdlGL = 0;
 
     if (SDL_Init(SDL_INIT_VIDEO) != 0)
@@ -48,7 +48,7 @@ int main(int argc, char** argv)
 
     SDL_Log("Width = %d. Height = %d\n", width, height);
 
-    sdlWindow = SDL_CreateWindow(nullptr, 0, 0, width, height, SDL_WINDOW_OPENGL | SDL_WINDOW_FULLSCREEN);
+    sdlWindow = SDL_CreateWindow(nullptr, 0, 0, width, height, SDL_WINDOW_ALLOW_HIGHDPI | SDL_WINDOW_OPENGL | SDL_WINDOW_FULLSCREEN);
 
     if (sdlWindow == 0)
     {
@@ -63,10 +63,10 @@ int main(int argc, char** argv)
     ImGui_ImplSdlGLES2_Init(sdlWindow);
 
     /* Query OpenGL device information */
-    const GLubyte* renderer = glGetString(GL_RENDERER);
-    const GLubyte* vendor = glGetString(GL_VENDOR);
-    const GLubyte* version = glGetString(GL_VERSION);
-    const GLubyte* glslVersion = glGetString(GL_SHADING_LANGUAGE_VERSION);
+    const GLubyte *renderer = glGetString(GL_RENDERER);
+    const GLubyte *vendor = glGetString(GL_VENDOR);
+    const GLubyte *version = glGetString(GL_VERSION);
+    const GLubyte *glslVersion = glGetString(GL_SHADING_LANGUAGE_VERSION);
 
     std::stringstream ss;
     ss << "\n-------------------------------------------------------------\n";
@@ -107,9 +107,11 @@ int main(int argc, char** argv)
             ImGui::SetNextWindowSize(ImVec2(200, 200), ImGuiSetCond_FirstUseEver);
             ImGui::Text("Hello, world!");
             ImGui::SliderFloat("float", &f, 0.0f, 1.0f);
-            ImGui::ColorEdit3("clear color", (float *) &imClearColor);
-            if (ImGui::Button("Test Window")) showTestWindow = !showTestWindow;
-            if (ImGui::Button("Another Window")) showAnotherWindow = !showAnotherWindow;
+            ImGui::ColorEdit3("clear color", (float *)&imClearColor);
+            if (ImGui::Button("Test Window"))
+                showTestWindow = !showTestWindow;
+            if (ImGui::Button("Another Window"))
+                showAnotherWindow = !showAnotherWindow;
             ImGui::Text("Application average %.3f ms/frame (%.1f FPS)",
                         1000.0f / ImGui::GetIO().Framerate, ImGui::GetIO().Framerate);
         }
@@ -117,7 +119,7 @@ int main(int argc, char** argv)
         // 2. Show another simple window, this time using an explicit Begin/End pair
         if (showAnotherWindow)
         {
-            ImGui::SetNextWindowSize(ImVec2(200,100), ImGuiSetCond_FirstUseEver);
+            ImGui::SetNextWindowSize(ImVec2(200, 100), ImGuiSetCond_FirstUseEver);
             ImGui::Begin("Another Window", &showAnotherWindow);
             ImGui::Text("Hello");
             ImGui::End();
